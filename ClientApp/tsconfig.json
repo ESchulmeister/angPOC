@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@app/*": [ "src/app/*" ],
+      "@environments/*": [ "src/environments/*" ]
+    },
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": [ "src/**/*" ],
+
+  "exclude": [ "node_modules" ],
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "enableI18nLegacyMessageIdFormat": false
+  }
+}

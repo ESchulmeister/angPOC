@@ -1,0 +1,81 @@
+<h2 class="content-block" >Sample Grid</h2>
+
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+
+
+    <dx-load-panel #loadPanel
+                   [position]="loadPanelPosition"
+                   [showIndicator]="true"
+                   [showPane]="false"
+                   [shading]="false"
+                   [closeOnOutsideClick]="false"
+                   (onShown)="onShown()">
+    </dx-load-panel>
+
+    <dx-data-grid id="gridContainer"
+                  [dataSource]="usersCustomStore"
+                  [showBorders]="true"
+                  [noDataText]=""
+                  (onContentReady)="onContentReady($event)"
+                  (onRowUpdating)="onRowUpdating($event)">
+
+      <dxo-load-panel [enabled]="true"></dxo-load-panel>
+      <dxo-paging [pageSize]="5"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="false"
+                 [showInfo]="true">
+      </dxo-pager>
+      <dxo-sorting mode="single"></dxo-sorting>
+      <dxo-filter-row [visible]="true" [applyFilter]="currentFilter"></dxo-filter-row>
+
+      <dxo-editing mode="popup"
+                   [allowAdding]="true"
+                   [allowDeleting]="true"
+                   [allowUpdating]="true"
+                   [useIcons]="true">
+
+        <dxo-texts confirmDeleteMessage="Are you sure you want to deactivate this user ?"></dxo-texts>
+
+        <dxo-popup title="User Info" [showTitle]="true" [width]="600" [height]="495"></dxo-popup>
+
+        <dxo-form>
+          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+            <dxi-item dataField="firstName"></dxi-item>
+            <dxi-item dataField="lastName"></dxi-item>
+            <dxi-item dataField="userName"></dxi-item>
+            <dxi-item dataField="email" dataType="email"></dxi-item>
+            <dxi-item dataField="clock" [editorOptions]="{format:'####'}" datatype="number">
+            </dxi-item>
+            <dxi-item dataField="stateID" caption="State"></dxi-item>
+          </dxi-item>
+        </dxo-form>
+      </dxo-editing>
+
+      <dxi-column dataField="ID" [visible]="false" [formItem]="{visible: false}"></dxi-column>
+      <dxi-column caption="Name" [fixed]="true" [calculateCellValue]="setfullName" [formItem]="{visible: false}">
+      </dxi-column>
+      <dxi-column dataField="createDate" dataType="date" caption="Created" [formItem]="{visible: false}">
+      </dxi-column>
+      <dxi-column dataField="userName" caption="Login">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="email">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+        <dxi-validation-rule type="email" message="e.g. usr@example.com"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="clock">
+        <dxi-validation-rule type="pattern" [pattern]="clockRegex" message="4 numeric characters"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="stateID" [width]="125" caption="State">
+        <dxo-lookup [dataSource]="states" valueExpr="id" displayExpr="name"></dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="firstName" [visible]="false">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="lastName" [visible]="false">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+    </dx-data-grid>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<h2 class="content-block">Profile</h2>
+
+
+<div class="content-block dx-card responsive-paddings center">
+
+  <dx-form id="form"
+           [formData]="user" labelLocation="top"
+           colCount="2"
+           [colCountByScreen]="colCountByScreen"
+           [screenByWidth]="screen">
+
+      <dxi-item dataField="userName"
+                [label]="{ text : 'User Name' }"
+                [editorOptions]="{  readOnly: true }">
+      </dxi-item>
+      <dxi-item dataField="createDate"
+                editorType="dxDateBox"
+                [label]="{ text : 'Created' }"
+                [editorOptions]="{ readOnly:true, width: '100%' }"
+                >
+      </dxi-item>
+
+      <dxi-item dataField="firstName"
+                [editorOptions]="{  readOnly: true  }">
+      </dxi-item>
+      <dxi-item dataField="lastName"
+                [editorOptions]="{  readOnly: true }">
+      </dxi-item>
+      <dxi-item dataField="clock"
+                [editorOptions]="{ readOnly: true }">
+      </dxi-item>
+      <dxi-item dataField="email"
+                [editorOptions]="{ readOnly: true }">
+      </dxi-item>
+      <dxi-item dataField="StateID"
+                [label]="{ text : 'State' }"
+                editorType="dxSelectBox"
+                [editorOptions]="
+                {
+                  width:'300px',
+                  readOnly: true,
+                  items: states,
+                  valueExpr: 'id',
+                  displayExpr: 'name' 
+                }"
+          >
+      </dxi-item>
+
+  </dx-form>
+</div>

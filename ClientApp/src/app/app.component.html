@@ -1,0 +1,13 @@
+<ng-container *ngIf="isAuthenticated(); else unauthenticated">
+  <app-side-nav-outer-toolbar title="{{appInfo.title}}">
+    <router-outlet></router-outlet>
+    <app-footer>
+      Copyright © {{appInfo.currentYear}} - {{appInfo.title}} .
+      <br />
+      Dayton T. Brown Inc. All Rights Reserved.
+    </app-footer>
+  </app-side-nav-outer-toolbar>
+</ng-container>
+
+<ng-template #unauthenticated>
+</ng-template>

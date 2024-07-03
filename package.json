@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@angular/cli": "^13.2.2",
+    "devextreme-aspnet-data-nojquery": "^2.8.6"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^13.2.2"
+  },
+  "sdk": {
+    "version": "8.0.201"
+  }
+}

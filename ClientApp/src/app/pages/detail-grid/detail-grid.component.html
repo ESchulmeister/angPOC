@@ -1,0 +1,21 @@
+
+<dx-data-grid [dataSource]="permissionsCustomStore"
+              [showBorders]="true"
+              [columnAutoWidth]="true">
+
+  <dxo-paging [enabled]="false"></dxo-paging>
+  <dxo-scrolling mode="virtual"></dxo-scrolling>
+  <dxo-sorting mode="single"></dxo-sorting>
+  <dxo-filter-row [visible]="true" [applyFilter]="currentFilter"></dxo-filter-row>
+
+  <dxo-editing mode="form"
+              [allowAdding]="true"
+              [useIcons]="true">
+  </dxo-editing>
+  <dxo-selection mode="single"></dxo-selection>
+  <dxi-column dataField="id" [visible]="false" [formItem]="{visible: false}"></dxi-column>
+  <dxi-column dataField="name">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+ 
+</dx-data-grid>

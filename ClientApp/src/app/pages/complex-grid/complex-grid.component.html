@@ -1,0 +1,59 @@
+<h2 class="content-block">Complex Grid</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-load-panel #loadPanel
+                   [position]="loadPanelPosition"
+                   [(visible)]="isLoading"
+                   [showIndicator]="true"
+                   [showPane]="false"
+                   [shading]="false"
+                   [closeOnOutsideClick]="false"
+                   (onShown)="onShown()">
+    </dx-load-panel>
+
+
+
+    <dx-data-grid id="gridContainer"
+                  [dataSource]="applicationCustomStore"
+                  [showBorders]="true"
+                  [noDataText]=""
+                  (onContentReady)="onContentReady($event)"
+                  >
+
+
+      <dxo-load-panel [enabled]="true"></dxo-load-panel>
+      <dxo-paging [enabled]="false"></dxo-paging>
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-sorting mode="single"></dxo-sorting>
+      <dxo-filter-row [visible]="true" [applyFilter]="currentFilter"></dxo-filter-row>
+      <dxo-selection mode="single"></dxo-selection>
+
+      <dxo-editing mode="form"
+                   [allowDeleting]="true"
+                   [allowUpdating]="true"
+                   [allowAdding]="true"
+                   [useIcons]="true">
+
+        <dxo-texts confirmDeleteMessage="Are you sure you want to delete this application ?"></dxo-texts>
+     
+      </dxo-editing>
+
+      <dxi-column dataField="id" [visible]="false" [formItem]="{visible: false}"></dxi-column>
+
+      <dxi-column dataField="isActive" datatype="boolean" caption="Active?"
+                  [formItem]="{visible: false}" trueText="Yes" falseText="No" [width]="100"></dxi-column>
+      <dxi-column dataField="name" datatype="string"  [minWidth]="350" >
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+        <dxi-validation-rule type="stringLength"
+                             [max]="255"
+                             [min]="3"
+                             message="3 to 255 characters"></dxi-validation-rule>
+      </dxi-column>
+      <dxo-master-detail [enabled]="true" [template]="'detail'"></dxo-master-detail>
+      <div *dxTemplate="let application of 'detail'">
+        <div class="master-detail-caption">{{application.data.name + " 's Permissions:"}}</div>
+        <app-detail-grid [key]='application.key'></app-detail-grid>
+      </div>
+    </dx-data-grid>
+  </div>
+</div>
